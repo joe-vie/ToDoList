@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showNewTask = false
     var body: some View {
         VStack {
             HStack {
@@ -18,13 +19,20 @@ struct ContentView: View {
                     .foregroundColor(Color(red: 0.4549019607843137, green: 0.5529411764705883, blue: 0.6823529411764706))
                 Spacer() //push left/right
                 Button {
-                    
+                    withAnimation {
+                        showNewTask = true
+                    }
                 } label: {
                     Text("+")
                         .foregroundColor(Color(red: 0.4549019607843137, green: 0.5529411764705883, blue: 0.6823529411764706))
                 }
             } // end of HStack
             Spacer() //push up/down
+            
+            if showNewTask {
+                NewToDo()
+            }
+            
         } // end of the Vstack
         .padding()
     }
